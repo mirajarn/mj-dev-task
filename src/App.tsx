@@ -14,7 +14,7 @@ function App() {
     <Router>
       <Layout>
         <Routes>
-          <Route path="/mj-dev-task" element={<Frontpage />} />
+          <Route path="/mj-dev-task/" element={<Frontpage />} />
           <Route path="/userlist" element={<ViewUsers />} />
         </Routes>
       </Layout>
