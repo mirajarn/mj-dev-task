@@ -15,7 +15,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
   const navigate = useNavigate();
 
   const navToFrontPage = () => {
-    navigate('/');
+    navigate('/mj-dev-task');
   };
 
   const navToUserList = () => {
