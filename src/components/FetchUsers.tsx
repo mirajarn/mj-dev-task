@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { User } from '../interfaces/User';
 
+/* The FetchUsers hook fetches user data from an API, sorts it alphabetically by name, and manages loading state. It returns the sorted users and loading state for use in components.*/
+
 const FetchUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);

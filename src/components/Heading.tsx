@@ -1,4 +1,5 @@
 import React from 'react';
+/* Summary: The Heading component renders an h1 element with a customizable title and optional CSS class for styling.*/
 
 interface HeadingProps {
   title: string;

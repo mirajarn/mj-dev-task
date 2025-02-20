@@ -1,21 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Frontpage from './Frontpage';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import ViewUsers from './ViewUsers';
+/* Summary: The Button component renders a button element with customizable click behavior, content, and CSS class.*/
 
 interface ButtonProps {
   onClick: () => void;
   children?: React.ReactNode;
   className?: string;
-  ariaLabel?: string;
-  tabIndex?: number;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, children, className, ariaLabel, tabIndex }) => {
+const Button: React.FC<ButtonProps> = ({ onClick, children, className }) => {
   return (
-    <button onClick={onClick} className={className} aria-label={ariaLabel} tabIndex={tabIndex}>
+    <button onClick={onClick} className={className}>
       {children}
     </button>
   );

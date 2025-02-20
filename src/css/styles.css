@@ -1,16 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
-
+/* Assigning variables */
 :root {
     --header-height: 3rem;
-    --sidebar-width: 80px;
-    --expanded-sidebar-width: 200px;
-    --primary-colour: #23a2d9;
-    --secondary-colour: #f9f9f9;
-    --white-color: #f0f5ff;
-    --body-font: 'Nunito', sans-serif;
+    --sidebar-width: 5rem;
+    --expanded-sidebar-width: 12rem;
+    --primary-colour: #78c6e7;
+    --secondary-colour: #f0f5ff;
+    --body-font: 'Helvetica Neue', sans-serif;
     --normal-font-size: 1rem;
-    --z-fixed: 100;
-    background-color: #F7F6FB;
 }
 
 *,
@@ -19,20 +15,18 @@
     box-sizing: border-box;
 }
 
+/*Set certain variables for the body of the page*/
 body {
     position: relative;
     margin: var(--header-height) 0 0 0;
     padding: 0 1rem;
-    font-family: var(--body-font);
+    font-family: var(--body-font) !important;
     font-size: var(--normal-font-size);
-    color: #176687;
     transition: .5s;
 }
 
-a {
-    text-decoration: none;
-}
-
+/* Header CSS below */
+/* Set headers width, height, position and how items are aligned inside it*/
 .header {
     width: 100%;
     height: var(--header-height);
@@ -42,36 +36,39 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1rem;
-    background-color: var(--white-color);
-    z-index: var(--z-fixed);
+    background-color: var(--secondary-colour);
+    z-index: 100;
     transition: 0.5s;
 }
 
-.header_toggle {
-    color: var(--primary-colour);
+/* Header title on the right */
+.header-title {
+    margin-left: auto;
     font-size: 1.5rem;
-    cursor: pointer;
 }
 
+/* Sidebar controlling header elements and buttons stylings */
 .header i.bi {
-    color: #23a2d9; /* Change the color of the icon */
-    font-size: 40px; /* Change the size of the icon */
+    color: #23a2d9;
+    font-size: 2.5rem;
 }
 
 .header-button {
     background-color: transparent;
     border: none;
-    cursor: pointer;
-    position: absolute; /* Add this line */
+    position: absolute; 
     left: 0;
 }
 
 .header-button:focus {
     outline: none;
-  }
+}
 
-.l-navbar {
+/* Header CSS above*/
+
+/* Sidebar CSS below */
+/* Style sidebar sidebar and expansion transition */
+.sidebar {
     position: fixed;
     top: var(--header-height);
     left: 0;
@@ -81,71 +78,68 @@ a {
     transition: width 0.3s;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1rem;
+    overflow-y: auto;
 }
 
-.l-navbar.expanded {
+.sidebar.expanded {
     width: var(--expanded-sidebar-width);
 }
 
-
-.show {
-    left: 0;
+/* Sidebar person square styling */
+.sidebar-info {
+    color: var(--secondary-colour);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+    align-items: center;
+    width: 100%;
+    font-size: 2rem;
+    margin-top: auto; 
+    margin-bottom: 5rem;
+    text-align: center;
 }
+
+/* Changing styling for expnaded sidebar */
+.sidebar.expanded .sidebar-info {
+    font-size: 15px;
+}
+/* Sidebar CSS above */
 
 .body-pd {
     padding-left: calc(var(--sidebar-width) + 1rem);
 }
 
-.active {
-    color: var(--white-color);
-}
-
-.active::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 2px;
-    height: 32px;
-    background-color: var(--white-color);
+/* User view CSS styling below */
+.users-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 2rem;
 }
 
 .user-grid {
-    position: inherit;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: auto auto auto auto;
+    gap: 2rem;
 }
 
-.hover-text {
-    position: absolute;
-    font-size: 20px;
-    color: #000000;
-    display: none; /* Hidden by default */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust position to be truly centered */
-    z-index: 2; /* Ensure the text is above the overlay */
-}
-
-.user-box:hover .hover-text {
-    display: block; /* Show on hover */
-}
-
+/* Indivisdual user box stylings */
 .user-box {
-    background-color: #e0e0e0; /* Change the background color */
-    padding: 20px; /* Increase the padding */
-    border-radius: 10px; /* Increase the border radius */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Increase the box shadow */
-    text-align: center; /* Center the text */
+    padding: 20px;
+    border-radius: 2rem; 
+    border-color: var(--secondary-colour);
+    border-style: solid;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center; 
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center; /* Center content vertically */
+    align-items: center;
     gap: 20px;
-    position: relative; /* Add this line */
-    overflow: hidden; /* Ensure the pseudo-element is contained */
-    transition: opacity  0.5s ease;
+    position: relative;
+    overflow: hidden; 
 }
 
 .user-box::before {
@@ -155,19 +149,133 @@ a {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #ffffff; /* White overlay */
+    background-color: #ffffff;
     opacity: 0;
     transition: opacity 0.5s ease;
-    z-index: 1; /* Ensure the overlay is above the background but below the text */
+    z-index: 1;
 }
 
+/* Hover stylings */
 .user-box:hover::before {
-    opacity: 0.9; /* Show the overlay on hover */
+    opacity: 0.9;
 }
 
+.hover-text {
+    position: absolute;
+    font-size: 20px;
+    color: #212529;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
 
+.user-box:hover .hover-text {
+    opacity: 1; 
+    visibility: visible;
+}
+/* User view CSS styling above */
 
-@media screen and (min-width: 768px) {
+/* Front page info box CSS stylings below*/
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 2rem;
+}
+
+/* Individual info box stylings */
+.info-grid-item {
+    padding: 20px; 
+    border-radius: 2rem;
+    border-color: var(--secondary-colour);
+    border-style: solid;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    text-align: center; 
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start;
+    align-items: center; 
+    gap: 20px;
+    position: relative;
+    overflow: hidden; 
+    transition: opacity 0.5s ease;
+}
+/* Front page info box CSS stylings above*/
+
+/* Buttons CSS below */
+.btn {
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    color: var(--secondary-colour);
+    cursor: pointer;
+}
+
+.sidebar-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 30px;
+    margin-top: 70px;
+    text-align: center;
+}
+
+.sidebar-btn i,
+.sidebar-btn h1 {
+    font-size: 30px;
+    color: var(--secondary-colour);
+    margin: 0; 
+}
+
+.btn:focus {
+    outline: none;
+}
+
+/* Buttons CSS ended */
+
+/*  Headings CSS below  */
+.frontpage-heading {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+.frontpage-subheading {
+    font-size: 2rem;
+    font-weight:bold
+
+}
+.user-heading {
+    font-size: 2rem;
+}
+
+.viewusers-heading {
+    margin-top: 2rem;
+    position: relative;
+}
+
+/*  Headings CSS ended  */
+
+/* Miscellaneous list, margin, and input search CSS stylings below */
+.none-margin {
+    margin: 0;
+}
+
+.none-list-type {
+    list-style-type: none;
+}
+
+.input-search {
+    margin: 0 0 1rem 0;
+}
+/* Miscellaneous CSS stylings above */
+
+/* Different CSS stylings for different window sizes below */
+@media screen and (min-width: 370px) {
     body {
         margin: calc(var(--header-height) + 1rem) 0 0 0;
         padding-left: calc(var(--sidebar-width) + 2rem);
@@ -178,7 +286,7 @@ a {
         padding: 0 2rem 0 calc(var(--sidebar-width) + 2rem);
     }
 
-    .l-navbar {
+    .sidebar {
         left: 0;
         padding: 1rem 1rem 0 0;
     }
@@ -191,59 +299,4 @@ a {
         padding-left: calc(var(--sidebar-width) + 188px);
     }
 }
-
-
-.btn {
-    height: 40px;
-    background-color: transparent;
-    border: none;
-    color: var(--white-color);
-    cursor: pointer;
-    }
-
-.sidebar-btn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; /* Center align the content */
-    width: 100%;
-    font-size: 30px;
-    margin-top: 70px;
-    text-align: center; /* Ensure text is centered */
-}
-
-.sidebar-btn i,
-.sidebar-btn h1 {
-    font-size: 30px;
-    color: var(--white-color);
-    margin: 0; /* Remove any default margin */
-}
-
-.btn:focus {
-    outline: none;
-}
-
-
-.frontpage-heading {
-    font-size: 20px;
-}
-
-.user-heading{
-    font-size: 30px;
-}
-
-.modal-list {
-    list-style-type: none;
-}
-
-.none-margin {
-    margin: 0;
-}
-
-.input-search {
-    margin: 0 0 10px 0;
-}
-
-.viewusers-heading {
-    margin-top: 2rem;
-}
+/* Different CSS stylings for different window sizes above */

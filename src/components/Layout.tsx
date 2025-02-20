@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import '../css/styles.css';
 import Header from './Header';
-import Frontpage from './Frontpage';
 import Sidebar from './Sidebar';
-import ViewUsers from './ViewUsers';
+
+/* Summary: The Layout component provides a wrapper for the app's header, sidebar, and dynamic content. It manages the sidebar's open/closed state and passes the necessary props to Header and Sidebar components, while rendering the children passed to the Layout. */
 
 interface LayoutProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
+
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -18,11 +18,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className={`app ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+      <Header handleToggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
       <Sidebar isOpen={isSidebarOpen} />
-      <Header toggleSidebar={toggleSidebar} />
-      <main>
         {children}
-      </main>
     </div>
   );
 };

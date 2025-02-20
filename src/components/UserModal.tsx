@@ -4,6 +4,7 @@ import { User } from '../interfaces/User';
 import Heading from './Heading';
 import { LABELS } from '../variables/variables';
 
+/* Summary: The UserModal component displays detailed information about a selected user in a modal. It takes a "show" prop to control visibility, an "onClose" callback to close the modal, and a "user" object to render the user's details. */
 interface UserModalProps {
     show: boolean;
     onClose: () => void;
@@ -24,21 +25,21 @@ const UserModal: React.FC<UserModalProps> = ({ show, onClose, user }) => {
                 <p>Username: {user.username}</p>
                 <p>Email: {user.email}</p>
                 <p className='none-margin'>Address:</p>
-                    <ul className="modal-list">
+                <ul className="none-list-type">
                     <li>Street: {user.address.street}</li>
                     <li>Suite: {user.address.suite}</li>
                     <li>City: {user.address.city}</li>
                     <li>Zipcode: {user.address.zipcode}</li>
                     <li>Geo: Lat {user.address.geo.lat}, Lng {user.address.geo.lng}</li>
-                    </ul>
+                </ul>
                 <p>Phone: {user.phone}</p>
                 <p>Website: {user.website}</p>
                 <p className='none-margin'>Company:</p>
-                    <ul className="modal-list">
+                <ul className="none-list-type">
                     <li>Name: {user.company.name}</li>
                     <li>Catch phrase: {user.company.catchPhrase}</li>
                     <li>BS: {user.company.bs}</li>
-                    </ul>
+                </ul>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={onClose}>
